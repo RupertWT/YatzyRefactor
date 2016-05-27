@@ -19,6 +19,7 @@ public class YatzyTest {
         assertEquals(expected, actual);
         assertEquals(50, Yatzy.yatzy(6,6,6,6,6));
         assertEquals(0, Yatzy.yatzy(6,6,6,6,3));
+        assertEquals(0, Yatzy.yatzy(5,4,6,5,5));
     }
 
     @Test public void test_1s() {
