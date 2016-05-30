@@ -6,12 +6,9 @@ public class Yatzy {
     static int[] dice = new int[5];
     
     public Yatzy(int d1, int d2, int d3, int d4, int d5) {
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = d5;
+        dice[0] = d1; dice[1] = d2; dice[2] = d3; dice[3] = d4; dice[4] = d5;
         
+//		Sort dice into numerical order
         int temp;
         for ( int i = 0; i <= 4; i ++ )  {
              for ( int j = i + 1; j <= 4; j ++) {
@@ -22,6 +19,11 @@ public class Yatzy {
                   }           
              }
         }
+        System.out.print(dice[0]);
+        System.out.print(dice[1]);
+        System.out.print(dice[2]);
+        System.out.print(dice[3]);
+        System.out.println(dice[4]);
     }
     
     public int chance() {
@@ -42,31 +44,34 @@ public class Yatzy {
     	return (same.equals("Y")) ? 50 : 0;
     }
     
+    
+    
+    
     public int ones() {
-        return sameValueOnAllDice(1);
+        return checkForSameValueOnAllDice(1);
     }
 
     public int twos() {
-    	return sameValueOnAllDice(2);
+    	return checkForSameValueOnAllDice(2);
     }
 
     public int threes() {
-    	return sameValueOnAllDice(3);
+    	return checkForSameValueOnAllDice(3);
     }
 
     public int fours() {
-    	return sameValueOnAllDice(4);
+    	return checkForSameValueOnAllDice(4);
     }
 
     public int fives() {
-    	return sameValueOnAllDice(5);
+    	return checkForSameValueOnAllDice(5);
     }
 
     public int sixes() {
-    	return sameValueOnAllDice(6);
+    	return checkForSameValueOnAllDice(6);
     }
-
-    private int sameValueOnAllDice(int n) {
+    
+    private int checkForSameValueOnAllDice(int n) {
     	int score = 0;
         for (int i = 0 ; i <= 4 ; i++) {
         	if (dice[i] == n) {
@@ -75,6 +80,9 @@ public class Yatzy {
         }
         return score;
     }
+    
+    
+    
     
     public int score_pair() {
         int[] counts = new int[6];
@@ -138,42 +146,53 @@ public class Yatzy {
         return 0;
     }
 
+    
+    
+    
     public int smallStraight() {
-        String smallStraight = "Y";
-	    for (int i = 0 ; i <= 4 ; i++) {
-        	if (dice[i] != i+1) {
-	        	smallStraight = "N";
-	        }
-	    }
-        return (smallStraight.equals("Y")) ? 15 : 0;
+    	return (checkForStraights(1)) ? 15 : 0;
     }
 
     public int largeStraight () {
-        String smallStraight = "Y";
-	    for (int i = 0 ; i <= 4 ; i++) {
-        	if (dice[i] != i+2) {
-	        	smallStraight = "N";
-	        }
-	    }
-        return (smallStraight.equals("Y")) ? 20 : 0;
+        return (checkForStraights(2)) ? 20 : 0;
     }
 
+    private boolean checkForStraights(int type) {
+		String straight = "Y";
+		
+	    for (int i = 0 ; i <= 4 ; i++) {
+        	if (dice[i] != i+type) {
+        		straight = "N";
+	        }
+	    }
+	    
+	    if (straight.equals("Y")) {
+	    	return true;
+	    }
+		return false;
+	}
+    
+    
+    
+    
     public int fullHouse() {
-    	int score = 0;
+       
     	if (dice[0] == dice[1] && dice[1] == dice[2] && dice[3] == dice[4]) {
-        	for (int i = 0; i <= 4; i++) {
-        		score += dice[i];
-        	}
-        	return score;
+    		return sumAllDiceInPool();
     	}
     	
     	if (dice[4] == dice[3] && dice[3] == dice[2] && dice[1] == dice[0]) {
-        	for (int i = 0; i <= 4; i++) {
-        		score += dice[i];
-        	}
-        	return score;
+    		return sumAllDiceInPool();
     	}  	
-    	return score;
+    	return 0;
+    }
+    
+    private int sumAllDiceInPool() {  	
+        int score = 0;
+    	for (int i = 0; i <= 4; i++) {
+        	score += dice[i];
+        }
+        return score;
     }
     
 }
