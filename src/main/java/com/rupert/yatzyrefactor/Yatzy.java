@@ -5,6 +5,7 @@ public class Yatzy {
     static int[] dice = new int[5];
     
     public Yatzy(int d1, int d2, int d3, int d4, int d5) {
+    	
     	dice[0] = d1; dice[1] = d2; dice[2] = d3; dice[3] = d4; dice[4] = d5;
         
         int temp;
@@ -34,7 +35,7 @@ public class Yatzy {
 
     public int yatzyCategory() {
     	for (int i = 0; i <= 3; i++) {
-    		if (dice[i]!=dice[1+i]) {
+    		if (dice[i] != dice[1+i]) {
     			return 0;
     		}
     	}
@@ -131,7 +132,7 @@ public class Yatzy {
     	}
     	
     	if (countOfDifferentPairs == 2) {
-    		return dice[1]*2 + dice[3]*2;
+    		return dice[1] * 2 + dice[3] * 2;
     	}	
     	return 0;
     }
