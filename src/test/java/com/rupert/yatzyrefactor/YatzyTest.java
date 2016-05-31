@@ -68,9 +68,10 @@ public class YatzyTest {
     }
 
     @Test
-    public void twoPairScoresSumOfHighestPairs() {
+    public void twoDifferentPairScoresSumOfHighestPairs() {
         assertEquals(16, new Yatzy(3,3,5,4,5).twoPairCategory());
         assertEquals(16, new Yatzy(3,3,5,5,5).twoPairCategory());
+        assertEquals(14, new Yatzy(3,3,4,5,4).twoPairCategory());
     }
 
     @Test
