@@ -158,18 +158,13 @@ public class Yatzy {
     }
 
     private boolean checkForStraights(int type) {
-		String straight = "Y";
 		
 	    for (int i = 0 ; i <= 4 ; i++) {
         	if (dice[i] != i+type) {
-        		straight = "N";
+        		return false;
 	        }
 	    }
-	    
-	    if (straight.equals("Y")) {
-	    	return true;
-	    }
-		return false;
+	    return true;
 	}
     
     
