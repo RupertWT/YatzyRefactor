@@ -6,9 +6,8 @@ public class Yatzy {
     static int[] dice = new int[5];
     
     public Yatzy(int d1, int d2, int d3, int d4, int d5) {
-        dice[0] = d1; dice[1] = d2; dice[2] = d3; dice[3] = d4; dice[4] = d5;
+    	dice[0] = d1; dice[1] = d2; dice[2] = d3; dice[3] = d4; dice[4] = d5;
         
-//		Sort dice into numerical order
         int temp;
         for ( int i = 0; i <= 4; i ++ )  {
              for ( int j = i + 1; j <= 4; j ++) {
@@ -25,8 +24,8 @@ public class Yatzy {
         System.out.print(dice[3]);
         System.out.println(dice[4]);
     }
-    
-    public int chance() {
+ 
+    public int chanceCategory() {
     	int score = 0;
     	for (int i = 0; i <= 4; i++) {
     		score += dice[i];
@@ -34,44 +33,40 @@ public class Yatzy {
     	return score;
     }
 
-    public int yatzy() {
-    	String same = "Y";
+    public int yatzyCategory() {
     	for (int i = 0; i <= 3; i++) {
     		if (dice[i]!=dice[1+i]) {
-    			same = "N";
+    			return 0;
     		}
     	}
-    	return (same.equals("Y")) ? 50 : 0;
-    }
-    
-    
-    
-    
-    public int ones() {
-        return checkForSameValueOnAllDice(1);
+    	return 50;
     }
 
-    public int twos() {
-    	return checkForSameValueOnAllDice(2);
+    public int onesCategory() {
+        return checkForValueOnAllDiceAndAddToScore(1);
     }
 
-    public int threes() {
-    	return checkForSameValueOnAllDice(3);
+    public int twosCategory() {
+    	return checkForValueOnAllDiceAndAddToScore(2);
     }
 
-    public int fours() {
-    	return checkForSameValueOnAllDice(4);
+    public int threesCategory() {
+    	return checkForValueOnAllDiceAndAddToScore(3);
     }
 
-    public int fives() {
-    	return checkForSameValueOnAllDice(5);
+    public int foursCategory() {
+    	return checkForValueOnAllDiceAndAddToScore(4);
     }
 
-    public int sixes() {
-    	return checkForSameValueOnAllDice(6);
+    public int fivesCategory() {
+    	return checkForValueOnAllDiceAndAddToScore(5);
+    }
+
+    public int sixesCategory() {
+    	return checkForValueOnAllDiceAndAddToScore(6);
     }
     
-    private int checkForSameValueOnAllDice(int n) {
+    private int checkForValueOnAllDiceAndAddToScore(int n) {
     	int score = 0;
         for (int i = 0 ; i <= 4 ; i++) {
         	if (dice[i] == n) {
@@ -79,12 +74,57 @@ public class Yatzy {
         	}
         }
         return score;
+    }    
+    
+    public int smallStraightCategory() {
+    	return (checkForStraights(1)) ? 15 : 0;
+    }
+
+    public int largeStraightCategory () {
+        return (checkForStraights(2)) ? 20 : 0;
+    }
+
+    private boolean checkForStraights(int type) {
+		
+	    for (int i = 0 ; i <= 4 ; i++) {
+        	if (dice[i] != i+type) {
+        		return false;
+	        }
+	    }
+	    return true;
+	}
+    
+    public int fullHouseCategory() {
+       
+    	if (dice[0] == dice[1] && dice[1] == dice[2] && dice[3] == dice[4]) {
+    		return sumAllDiceInPool();
+    	}
+    	
+    	if (dice[4] == dice[3] && dice[3] == dice[2] && dice[1] == dice[0]) {
+    		return sumAllDiceInPool();
+    	}  	
+    	return 0;
+    }
+    
+    private int sumAllDiceInPool() {  	
+        int score = 0;
+    	for (int i = 0; i <= 4; i++) {
+        	score += dice[i];
+        }
+        return score;
     }
     
     
     
     
-    public int score_pair() {
+    
+    
+    
+    
+    
+    
+    
+    public int onePairCategory() {
         int[] counts = new int[6];
         counts[dice[0]-1]++;
         counts[dice[1]-1]++;
@@ -98,7 +138,7 @@ public class Yatzy {
         return 0;
     }
 
-    public int two_pair() {
+    public int twoPairCategory() {
         int[] counts = new int[6];
         counts[dice[0]-1]++;
         counts[dice[1]-1]++;
@@ -118,7 +158,7 @@ public class Yatzy {
             return 0;
     }
     
-    public int three_of_a_kind() {
+    public int threeOfAKindCategory() {
         int[] t;
         t = new int[6];
         t[dice[0]-1]++;
@@ -132,7 +172,7 @@ public class Yatzy {
         return 0;
     }
     
-    public int four_of_a_kind() {
+    public int fourOfAKindCategory() {
         int[] tallies;
         tallies = new int[6];
         tallies[dice[1]-1]++;
@@ -144,50 +184,6 @@ public class Yatzy {
             if (tallies[i] >= 4)
                 return (i+1) * 4;
         return 0;
-    }
-
-    
-    
-    
-    public int smallStraight() {
-    	return (checkForStraights(1)) ? 15 : 0;
-    }
-
-    public int largeStraight () {
-        return (checkForStraights(2)) ? 20 : 0;
-    }
-
-    private boolean checkForStraights(int type) {
-		
-	    for (int i = 0 ; i <= 4 ; i++) {
-        	if (dice[i] != i+type) {
-        		return false;
-	        }
-	    }
-	    return true;
-	}
-    
-    
-    
-    
-    public int fullHouse() {
-       
-    	if (dice[0] == dice[1] && dice[1] == dice[2] && dice[3] == dice[4]) {
-    		return sumAllDiceInPool();
-    	}
-    	
-    	if (dice[4] == dice[3] && dice[3] == dice[2] && dice[1] == dice[0]) {
-    		return sumAllDiceInPool();
-    	}  	
-    	return 0;
-    }
-    
-    private int sumAllDiceInPool() {  	
-        int score = 0;
-    	for (int i = 0; i <= 4; i++) {
-        	score += dice[i];
-        }
-        return score;
     }
     
 }
