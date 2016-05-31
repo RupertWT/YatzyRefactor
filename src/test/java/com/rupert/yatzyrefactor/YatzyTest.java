@@ -76,6 +76,8 @@ public class YatzyTest {
     @Test
     public void threeOfAKindScoresSumOfTheseDice() {
         assertEquals(9, new Yatzy(3,3,3,4,5).threeOfAKindCategory());
+        assertEquals(9, new Yatzy(4,3,3,3,5).threeOfAKindCategory());
+        assertEquals(9, new Yatzy(4,5,3,3,3).threeOfAKindCategory());
         assertEquals(15, new Yatzy(5,3,5,4,5).threeOfAKindCategory());
         assertEquals(9, new Yatzy(3,3,3,3,5).threeOfAKindCategory());
         assertEquals(9, new Yatzy(3,3,3,3,3).threeOfAKindCategory());
@@ -85,6 +87,7 @@ public class YatzyTest {
     public void fourOfAKindScoresSumOfTheseDice() {
         assertEquals(12, new Yatzy(3,3,3,3,5).fourOfAKindCategory());
         assertEquals(20, new Yatzy(5,5,5,4,5).fourOfAKindCategory());
+        assertEquals(20, new Yatzy(5,5,5,5,5).fourOfAKindCategory());
 
     }
 
