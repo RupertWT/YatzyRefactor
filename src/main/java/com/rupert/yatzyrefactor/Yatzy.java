@@ -18,11 +18,11 @@ public class Yatzy {
                   }           
              }
         }
-        System.out.print(dice[0]);
-        System.out.print(dice[1]);
-        System.out.print(dice[2]);
-        System.out.print(dice[3]);
-        System.out.println(dice[4]);
+//        System.out.print(dice[0]);
+//        System.out.print(dice[1]);
+//        System.out.print(dice[2]);
+//        System.out.print(dice[3]);
+//        System.out.println(dice[4]);
     }
  
     public int chanceCategory() {
@@ -152,7 +152,6 @@ public class Yatzy {
     }
     
     private boolean findXNumberOfAKind(int x) {
-
     	for(int i = 1; i <= 6; i++) {
     		if ((checkForValueOnAllDiceAndAddToScore(i) / x ) >= i) {
     			return true;
