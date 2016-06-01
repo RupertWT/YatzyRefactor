@@ -18,11 +18,11 @@ public class Yatzy {
                   }           
              }
         }
-//        System.out.print(dice[0]);
-//        System.out.print(dice[1]);
-//        System.out.print(dice[2]);
-//        System.out.print(dice[3]);
-//        System.out.println(dice[4]);
+        System.out.print(dice[0]);
+        System.out.print(dice[1]);
+        System.out.print(dice[2]);
+        System.out.print(dice[3]);
+        System.out.println(dice[4]);
     }
  
     public int chanceCategory() {
@@ -138,17 +138,27 @@ public class Yatzy {
     }
     
     public int threeOfAKindCategory() {
-    	if ((dice[0] == dice[1] && dice[1] == dice[2]) || (dice[1] == dice[2] && dice[2] == dice[3]) || (dice[2] == dice[3] && dice[3] == dice[4])) {
+    	if (findXNumberOfAKind(3)) {
     		return dice[2] * 3;
     	}
      	return 0;
     }
         
     public int fourOfAKindCategory() {	
-    	if ((dice[0] == dice[1] && dice[1] == dice[2] && dice[2] == dice[3]) || (dice[1] == dice[2] && dice[2] == dice[3] && dice[3] == dice[4])) {
+    	if (findXNumberOfAKind(4)) {
     		return dice[2] * 4;
     	}
      	return 0;
+    }
+    
+    private boolean findXNumberOfAKind(int x) {
+
+    	for(int i = 1; i <= 6; i++) {
+    		if ((checkForValueOnAllDiceAndAddToScore(i) / x ) >= i) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
     
 }
