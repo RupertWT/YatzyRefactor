@@ -22,11 +22,7 @@ public class Yatzy {
                   }           
              }
         }
-//        System.out.print(dice[0]);
-//        System.out.print(dice[1]);
-//        System.out.print(dice[2]);
-//        System.out.print(dice[3]);
-//        System.out.println(dice[4]);
+//        System.out.print(dice[0]); System.out.print(dice[1]); System.out.print(dice[2]); System.out.print(dice[3]); System.out.println(dice[4]);
     }
  
     public int chanceCategory() {
