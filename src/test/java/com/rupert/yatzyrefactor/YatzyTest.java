@@ -122,5 +122,6 @@ public class YatzyTest {
     public void fullHouseScoresSumOfAllDice() {
         assertEquals(18, new Yatzy(6,2,2,2,6).fullHouseCategory());
         assertEquals(0, new Yatzy(2,3,4,5,6).fullHouseCategory());
+        //missing test: Yatzy(2,2,2,2,2) assertEquals 0
     }
 }
